@@ -1,0 +1,905 @@
+<!--
+ * Wyszukiwarka opraw ATM v.1.0
+ * @copyright Copyright 2019
+ * @author    Mateusz Bakun
+ * @link      mateusz@atmlighting.pl
+
+ * wszystkie prawa zastrzeżone // all rights reserved
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-32244426-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-32244426-7');
+</script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link href="reset.css" rel="stylesheet"/>
+        <link href="style.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>Wyszukiwarka opraw LED firmy ATM lighting</title>
+    </head>
+    
+    
+    <body>
+        <div class="container-fluid">
+<!--
+            <div class="row">
+                <img class="logo" src="Logo-z-tekstem-konfigurator.jpg" alt="KONFIGURATOR OPRAW LEDOWYCH">
+            </div>
+            -->
+                <div class="row">
+        <div class="controls col-md-2 maintest">
+                <div class="row"> 
+                    <button type="button" class="control resetbutton" data-filter="all">Reset</button>
+                   <!-- <div class="podpisReset">Reset</div> -->
+                </div>
+                    
+                <div class="dzialy">Działy</div>
+                <div class="row">   
+                    <button type="button" class="control" data-toggle=".EX">EX</button>
+                    <div class="mini-podpis">Oprawy przeciwwybuchowe</div>
+                </div>
+                <div class="row">   
+                    <button type="button" class="control" data-toggle=".VANDAL">Wandal</button>
+                    <div class="mini-podpis">Oprawy wandaloodporne</div>
+                </div>
+                <div class="row">   
+                    <button type="button" class="control" data-toggle=".INDUSTRY">industry</button>
+                    <div class="mini-podpis">Oprawy przemysłowe</div>
+                </div>
+                 
+                <div class="dzialy">Certyfikaty</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".cnbop">cnbop</button>
+                        <div class="mini-podpis">Dopuszczenie CNBOP</div>
+                    </div>
+                    <div class="row">   
+                      <!--  <button type="button" class="control" id=atex data-toggle=".atex">atex</button>-->
+                        <div class="mini-podpis przesuniete" >Certyfikat ATEX:</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control przesuniete" data-toggle=".strefapierwsza">atex</button>
+                        <div class="mini-podpis ">Strefa 1 | 2G | Gb</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control przesuniete" data-toggle=".strefadwudziestapierwsza">atex</button>
+                        <div class="mini-podpis ">Strefa 21 | 2D | Gc</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control przesuniete" data-toggle=".strefadruga">atex</button>
+                        <div class="mini-podpis ">Strefa 2 | 3G | Gc</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control przesuniete" data-toggle=".strefadwudziestadruga">atex</button>
+                        <div class="mini-podpis">Strefa 22 | 3D | Dc</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".pkp">pkp</button>
+                        <div class="mini-podpis">Dopuszczenie PKP PLK</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".pzh">pzh</button>
+                        <div class="mini-podpis">Atest PZH</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".enec">enec</button>
+                        <div class="mini-podpis">Certyfikat ENEC</div>
+                    </div>
+
+                <div class="dzialy">Stopnie ochrony IP</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ip54">ip54</button>
+                        <div class="mini-podpis">ip54</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ip65">ip65</button>
+                        <div class="mini-podpis">ip65</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ip66">ip66</button>
+                        <div class="mini-podpis">ip66</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ip67">ip67</button>
+                        <div class="mini-podpis">ip67</div>
+                    </div>
+                
+                    <div class="dzialy">Stopnie ochrony IK</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ik08">Stopień ochrony IK08</button>
+                        <div class="mini-podpis">Stopień ochrony IK08</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ik10">Stopień ochrony IK10</button>
+                        <div class="mini-podpis">Stopień ochrony IK10</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".ik10plus">Stopień ochrony IK10+</button>
+                        <div class="mini-podpis">Stopień ochrony IK10+</div>
+                    </div>
+
+                <div class="dzialy">Temp. pracy</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".minus20">Temp. pracy od -20 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy od -20 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".minus40">Temp. pracy od -40 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy od -40 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".plus45">Temp. pracy do +45 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy do +45 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".plus50">Temp. pracy do +50 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy do +50 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".plus60">Temp. pracy do +60 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy do +60 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".plus70">Temp. pracy do +70 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy do +70 stopni C</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".plus75">Temp. pracy do +75 stopni C</button>
+                        <div class="mini-podpis">Temp. pracy do +75 stopni C</div>
+                    </div>
+
+
+                <div class="dzialy">Materiał obudowy</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".pc-housing">Obudowa PC</button>
+                        <div class="mini-podpis">Obudowa plastikowa - PC</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".grp-housing">Obudowa plastikowa - GRP</button>
+                        <div class="mini-podpis">Obudowa plastikowa - GRP</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".metal-housing">Metalowa obudowa</button>
+                        <div class="mini-podpis">Metalowa obudowa</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".alu-housing">Obudowa aluminiowa</button>
+                        <div class="mini-podpis">Obudowa aluminiowa</div>
+                    </div>
+                
+                    <div class="dzialy">Materiał Klosza</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".pc-diffuser">Klosz z poliwęglanu</button>
+                        <div class="mini-podpis">Klosz z poliwęglanu</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".pmma-diffuser">Klosz z PMMA</button>
+                        <div class="mini-podpis">Klosz z PMMA</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".glass-diffuser">Szklany klosz</button>
+                        <div class="mini-podpis">Szklany klosz</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".safetyglass-diffuser">Szklany klosz safety glass</button>
+                        <div class="mini-podpis">Szklany klosz safety glass</div>
+                    </div>
+
+                <div class="dzialy">Dodatkowe opcje</div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".dali">DALI</button>
+                        <div class="mini-podpis">DALI</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".a3">Praca awaryjna 3h</button>
+                        <div class="mini-podpis">Praca awaryjna 3h - A3</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".zb">Współpraca z centralną baterią ZB</button>
+                        <div class="mini-podpis">Współpraca z centralną baterią ZB</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".sns">Z sensorem ruchu</button>
+                        <div class="mini-podpis">Z sensorem ruchu</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".nl">Z układem night light</button>
+                        <div class="mini-podpis">Z układem night light</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".vp">Odporna na wibracje</button>
+                        <div class="mini-podpis">Odporna na wibracje</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".c4">W wykonaniu korozyjności C4</button>
+                        <div class="mini-podpis">W wykonaniu korozyjności C4</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".drugaklasa">W drugiej klasie ochronności</button>
+                        <div class="mini-podpis">W drugiej klasie ochronności</div>
+                    </div>
+                    <div class="row">   
+                        <button type="button" class="control" data-toggle=".napieciestale24VDC">Moduły 24V DC</button>
+                        <div class="mini-podpis">Moduły 24V DC</div>
+                    </div>
+           
+           
+
+        </div>
+        
+        <div class="container col-md-10 discussion" id=calosc>
+       <p class="textpusto ukryte" id="text"> Niestety żadna oprawa w standardzie nie spełnia danych wymagań. Proszę usunąć przynajmniej jedno ograniczenie lub kliknąć przycisk reset. Proszę o kontakt na e-mail <a href="mailto:bok@atmlighting.pl">bok@atmlighting.pl</a> w celu otrzymania oferty spełniającej specjalne wymagania.</p>
+                <div class="mix cnbop atex pzh ip54 ip65 ip66 ip67 pc-housing pc-diffuser minus20 minus40 plus45 sprawnosc150 a3 zb dali EX strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                        <div class="obrazIprzyciski">
+                    <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXL210LED/EXL210LED_oprawa.jpg" alt="Image 1">
+                    <div class="middle">
+                            <div class="text">
+                                <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXL210LED/EXL210LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                                <button class="btn btn-danger" onclick="wybierz_EXL210LED()">Przejdź do konfiguratora</button>
+                                <button class="btn btn-danger" onclick="wyslijEmail('EXL210LED')">Wyślij zapytanie</button>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+               
+                <div class="mix atex ip54 ip65 ip67 metal-housing pc-diffuser minus20 minus40 plus45 plus50 sprawnosc150 zb dali a3 ik10 EX strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                        <div class="obrazIprzyciski">
+                    <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXL310LED/EXL310LED_oprawa.jpg" alt="Image 1">
+                    <div class="middle">
+                            <div class="text">
+                                    <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXL310LED/EXL310LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                                    <button class="btn btn-danger" onclick="wybierz_EXL310LED()">Przejdź do konfiguratora</button>
+                                    <button class="btn btn-danger" onclick="wyslijEmail('EXL310LED')">Wyślij zapytanie</button>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+              
+            <div class="mix atex ip54 ip65 metal-housing glass-diffuser minus20 minus40 dali EX strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXL380LED/EXL380LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXL380LED/EXL380LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_EXL380LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('EXL380LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix atex ip54 ip65 metal-housing glass-diffuser pc-diffuser minus20 minus40 plus45 plus50 a3 zb dali EX strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXL390LED-RC/EXL390LED-RC_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXL390LED/EXL390LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_EXL390LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('EXL390LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix atex ip54 ip65 ip66 ip67 pc-housing pc-diffuser minus20 minus40 plus45 a3 zb EX strefapierwsza strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXF200LED/EXF200LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXF200LED/EXF200LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_EXF200LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('EXF200LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix atex cnbop ip54 ip65 ip66 ip67 grp-housing pc-diffuser pmma-diffuser a3 zb minus20 minus40 plus45 plus50 plus60 EX strefapierwsza strefadruga strefadwudziestapierwsza strefadwudziestadruga">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXF250LED/EXF250LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXF250LED/EXF250LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_EXF250LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('EXF250LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix atex ip54 ip65 ip67 metal-housing pc-diffuser a3 zb minus20 minus40 plus45 plus50 plus60 EX strefapierwsza strefadruga strefadwudziestapierwsza strefadwudziestadruga"> <!--EXF300LED-->
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/EXF300LED/EXF300LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/przeciwwybuchowe_oprawy_oswietleniowe/EXF300LED/EXF300LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_EXF300LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('EXF300LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix cnbop pkp enec ip54 ip65 ik08 ik10 ik10plus minus20 minus40 plus45 metal-housing pc-diffuser dali a3 zb drugaklasa VANDAL">  <!--INV320LED-->
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INV320LED/INV320LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INV320LED/INV320LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INV320LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INV320LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="mix cnbop pkp enec ip54 ip65 ik08 ik10 ik10plus minus20 minus40 plus45 metal-housing pc-diffuser dali a3 zb drugaklasa VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INV320LED-SF/INV320LED-SF_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INV320LED-SF/INV320LED-SF_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INV320LEDSF()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INV320LED-SF')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+          
+                <div class="mix cnbop pkp enec ip54 ip65 ik08 ik10 ik10plus minus20 minus40 plus45 metal-housing pc-diffuser dali a3 zb drugaklasa VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INV320LED-RC/INV320LED-RC_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INV320LED-RC/INV320LED-..-RC_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INV320LEDRC()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INV320LED-RC')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+         
+                <div class="mix ip54 ip65 ip66 ip67 ik08 ik10 ik10plus metal-housing pc-diffuser VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INV360LED/INV360LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INV360LED/INV360LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INV360LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INV360LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            
+                <div class="mix pkp ip54 ip65 ip66 ip67 ik08 minus20 plus45 pc-housing pc-diffuser pmma-diffuser VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS230-II/INS230-II_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INS230/INS230_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS230()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS230')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+          
+                <div class="mix pkp ip54 ip65 ip66 ip67 minus20 plus45 ik08 ik10 metal-housing pc-diffuser VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS340-II/INS340-II_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/wandaloodporne_oprawy_oswietleniowe_do_infrastruktury_kolejowej_i_tuneli/INS340/INS340_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS340()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS340')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+         
+                <div class="mix ip54 ik08 ik10 ik10plus minus20 plus45 metal-housing pc-diffuser a3 zb sns nl napieciestale24VDC VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INP320LED/INP320LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_wandaloodporne_zaklady_penitencjarne/INP320LED/INP320LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INP320LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INP320LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+           
+                <div class="mix ip54 ik08 ik10 ik10plus minus20 plus45 metal-housing pc-diffuser a3 zb sns nl napieciestale24VDC VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INP320LED-SF/INP320LED-SF_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_wandaloodporne_zaklady_penitencjarne/INP320LED-SF/INP320LED-SF_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INP320LEDSF()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INP320LED-SF')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+          
+                <div class="mix ip54 ik08 ik10 ik10plus minus20 plus45 metal-housing pc-diffuser a3 zb sns nl napieciestale24VDC VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INP320LED-RC/INP320LED-RC_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_wandaloodporne_zaklady_penitencjarne/INP320LED-RC/INP320LED-RC_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INP320LEDRC()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INP320LED-RC')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix ip54 ip65 ip66 ip67 ik08 ik10 ik10plus metal-housing pc-diffuser VANDAL">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INP360LED/INP360LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_wandaloodporne_zaklady_penitencjarne/INP360LED/INP360LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INP360LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INP360LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix ip54 ip65 minus20 plus45 plus50 metal-housing glass-diffuser pc-diffuser dali vp INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/HPL425LED/HPL425LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/HPL425LED/HPL425LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_HPL425LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('HPL425LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+       
+                <div class="mix ip54 ip65 ip66 ip67 ik08 ik10 minus20 plus45 metal-housing pc-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS340LED/INS340LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INS340LED/INS340LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS340LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS340LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+         
+                <div class="mix pzh ip54 ip65 minus20 plus45 metal-housing pc-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS370LED/INS370LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INS370LED/INS370LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS370LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS370LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix ip54 ip65 minus20 plus45 plus50 plus60 metal-housing glass-diffuser vp INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/HPL440LED/HPL440LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/HPL440LED/HPL440LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_HPL440LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('HPL440LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+       
+                <div class="mix ip54 ip65 ip67 minus20 minus40 plus45 plus50 plus60 plus70 plus75 metal-housing pc-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INX340LED/INX340LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INX340LED/INX340LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INX340LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INX340LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+       
+                <div class="mix ip54 ip65 ip66 ip67 minus20 minus40 plus45 plus50 plus60 plus70 pc-housing pc-diffuser pmma-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INX230LED/INX230LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INX230LED/INX230LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INX230LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INX230LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix cnbop ip54 ip65 ip66 ip67 minus20 plus45 pc-housing pc-diffuser pmma-diffuser dali a3 zb c4 INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS230LED/INS230LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INS230LED/INS230LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS230LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS230LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix ip54 ip65 ip66 ik08 minus20 plus45 alu-housing glass-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/HPL430LED/HPL430LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/HPL430LED/HPL430LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_HPL430LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('HPL430LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+       
+                <div class="mix ip54 minus20 plus45 metal-housing glass-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS395LED/INS395LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/zaklady_produkcyjne_i_hale_magazynowe/INS395LED/INS395LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS395LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS395LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix pzh ip54 ip65 ip66 ip67 minus20 minus40 plus45 plus50 plus60 metal-housing pc-diffuser glass-diffuser safetyglass-diffuser pmma-diffuser dali c4 INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img onclick="wybierz_INS350LED()" class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS350LED-C4/INS350LED-C4_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_oswietleniowe_do_przemyslu_spozywczego_i_hodowli_zwierzat/INS350LED/INS350LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS350LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS350LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+                <div class="mix pzh ip54 ip65 ip66 ip67 grp-housing pc-diffuser pmma-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img onclick="wybierz_INS250LED()" class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS250LED/INS250LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_oswietleniowe_do_przemyslu_spozywczego_i_hodowli_zwierzat/INS250LED/INS250LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS250LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS250LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+           
+                <div class="mix ip54 ip65 minus20 plus45 grp-housing pmma-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img onclick="wybierz_INS270LED()" class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS270LED/INS270LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_oswietleniowe_do_przemyslu_spozywczego_i_hodowli_zwierzat/INS270LED/INS270LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS270LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS270LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            
+                <div class="mix ip54 ip65 minus20 plus45 metal-housing pc-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img onclick="wybierz_INS310LED()" class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS310LED/INS310LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_oswietleniowe_do_przemyslu_spozywczego_i_hodowli_zwierzat/INS310LED/INS310LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS310LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS310LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+            
+                <div class="mix pzh ip54 ip65 minus20 plus45 metal-housing safetyglass-diffuser INDUSTRY">
+                    <div class="obrazIprzyciski">
+                <img onclick="wybierz_INS360LED()" class="image" src="http://atmlighting.home.pl/website/konfigurator/PL/INS360LED/INS360LED_oprawa.jpg" alt="Image 1">
+                <div class="middle">
+                        <div class="text">
+                            <button class="btn btn-danger" onclick="window.open('https://atmlighting.pl/images/produkty/oprawy_oswietleniowe_do_przemyslu_spozywczego_i_hodowli_zwierzat/INS360LED/INS360LED_karta_katalogowa.pdf', '_blank')">Karta katalogowa</button>
+                            <button class="btn btn-danger" onclick="wybierz_INS360LED()">Przejdź do konfiguratora</button>
+                            <button class="btn btn-danger" onclick="wyslijEmail('INS360LED')">Wyślij zapytanie</button>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+        <script src="http://atmlighting.home.pl/website/konfigurator/PL/konfigurator.js"></script>
+        <script src="mixitup.min.js"></script>
+    
+
+<script>
+var text = document.getElementById("text");  
+
+
+var containerEl = document.querySelector('.container');
+var mixer = mixitup(containerEl, {
+    controls: {
+    toggleLogic: 'and'
+        }
+    });
+
+document.addEventListener('mixEnd', function(){
+    if(mixer.getState().totalShow == 0)
+    {
+        console.log("bbb");
+        text.className="textpusto pokazane";
+    }
+    else{
+        text.className="textpusto ukryte";
+    }
+})
+
+/*
+var pierwsza = document.getElementById("pokaz1");
+var druga = document.getElementById("pokaz2");
+var trzecia = document.getElementById("pokaz3");
+var czwarta = document.getElementById("pokaz4");
+$('#atex').on('click', function(){
+    if(pierwsza.className == "ukryte")
+    {
+    pierwsza.className = "pokazane";
+    druga.className = "pokazane";
+    trzecia.className = "pokazane";
+    czwarta.className = "pokazane";
+    }
+    
+    if(pobierzAtex.className == "control mixitup-control-active")
+    {
+    $('#zmien1').removeClass('mixitup-control-active');
+    pierwsza.className = "ukryte";
+    druga.className = "ukryte";
+    trzecia.className = "ukryte";
+    czwarta.className = "ukryte";
+    }
+})
+*/
+/*
+$('.control').on('click', function(){
+   $('.mix').each(function(i,obj) {
+    if(obj.style.display == "none")
+    {
+        //alert("aaa");
+        text.className="textpusto pokazane";
+    }   
+});
+});
+*/
+
+//console.log(mixer.getState());
+//console.log(mixer.getState().targets);
+
+
+function wyslijEmail(oprawa) 
+{
+	tytulMaila = "Zapytanie ofertowe wygenerowane z wyszukiwarki";
+	window.location.href = "mailto:bok@atmlighting.pl" + "?subject=" + tytulMaila + "&body=Proszę o więcej informacji odnośnie oprawy : " + oprawa;
+	}
+//funkcja ustawiajaca zmienna EXL210 ktora moze byc przekazana do konfiguratora
+/*
+function wybierz_EX() {
+    var getInput=prompt("Hey type something here: ");
+    //alert(getInput);
+    localStorage.setItem("storageName",getInput);
+	//self.location="konfig/konfigurator_pl.html";
+    }
+   */ 
+    function wybierz_EXL210LED() {
+var value1="EXL210LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+//window.location.target = "_blank";
+		//var getInput="EXL210LED";
+		//localStorage.setItem("storageName",getInput);
+	}
+	function wybierz_EXL310LED() {
+        var value1="EXL310LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+		//var getInput="EXL310LED";
+		//localStorage.setItem("storageName",getInput);
+	}
+	function wybierz_EXL380LED() {
+		var value1="EXL380LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+	function wybierz_EXL390LED() {
+        var value1="EXL390LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+	function wybierz_EXF200LED() {
+		var value1="EXF200LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+	function wybierz_EXF250LED() {
+        var value1="EXF250LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+	function wybierz_EXF300LED() {
+        var value1="EXF300LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+    }
+    function wybierz_INV320LED() {
+        var value1="INV320LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+    }
+    function wybierz_INV320LEDSF() {
+        var value1="INV320LEDSF";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INV320LEDRC() {
+		var value1="INV320LEDRC";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+    }
+    function wybierz_INV360LED() {
+		var value1="INV360LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+    }
+    function wybierz_INS230() {
+		var value1="INS230";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS340() {
+		var value1="INS340";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INP320LED() {
+		var value1="INP320LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INP320LEDSF() {
+		var value1="INP320LEDSF";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INP320LEDRC() {
+		var value1="INP320LEDRC";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INP360LED() {
+		var value1="INP360LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_HPL425LED() {
+		var value1="HPL425LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS340LED() {
+		var value1="INS340LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS370LED() {
+		var value1="INS370LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_HPL440LED() {
+		var value1="HPL440LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INX340LED() {
+		var value1="INX340LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INX230LED() {
+		var value1="INX230LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS230LED() {
+		var value1="INS230LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_HPL430LED() {
+		var value1="HPL430LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS395LED() {
+		var value1="INS395LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS350LED() {
+		var value1="INS350LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS250LED() {
+		var value1="INS250LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS270LED() {
+		var value1="INS270LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS310LED() {
+		var value1="INS310LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+    function wybierz_INS360LED() {
+		var value1="INS360LED";
+var queryString = "?" + value1;
+window.open("http://atmlighting.home.pl/website/konfigurator/PL/konfigurator_pl_wyszuk.html" + queryString, '_blank');
+	}
+
+
+
+
+
+</script>
+   </body>
+   </html>
